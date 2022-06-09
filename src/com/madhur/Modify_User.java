@@ -4,13 +4,11 @@
  */
 package com.madhur;
 
-import static java.lang.Math.random;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author 91940
  */
-public class User extends javax.swing.JFrame {
+public class Modify_User extends javax.swing.JFrame {
 
     /**
      * Creates new form login
@@ -26,7 +24,7 @@ public class User extends javax.swing.JFrame {
     Connection connection;
     PreparedStatement preparedStatement;
 
-    public User() throws ClassNotFoundException, SQLException {
+    public Modify_User() throws ClassNotFoundException, SQLException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
@@ -47,7 +45,7 @@ public class User extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         username1 = new javax.swing.JLabel();
         first_name = new javax.swing.JTextField();
-        update = new javax.swing.JButton();
+        modify = new javax.swing.JButton();
         back = new javax.swing.JButton();
         dob = new javax.swing.JTextField();
         username4 = new javax.swing.JLabel();
@@ -81,7 +79,7 @@ public class User extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 0, 51));
 
         login.setFont(new java.awt.Font("Kruti Dev 040 ", 1, 36)); // NOI18N
-        login.setText("User Details");
+        login.setText("Modify User Details");
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -98,11 +96,11 @@ public class User extends javax.swing.JFrame {
             }
         });
 
-        update.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        update.setText("Update");
-        update.addActionListener(new java.awt.event.ActionListener() {
+        modify.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        modify.setText("Modify");
+        modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
+                modifyActionPerformed(evt);
             }
         });
 
@@ -246,7 +244,7 @@ public class User extends javax.swing.JFrame {
                         .addComponent(username11))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(383, 383, 383)
-                        .addComponent(update)
+                        .addComponent(modify)
                         .addGap(44, 44, 44)
                         .addComponent(back))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -311,9 +309,9 @@ public class User extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addGap(464, 464, 464)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -369,7 +367,7 @@ public class User extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
-                    .addComponent(update))
+                    .addComponent(modify))
                 .addGap(51, 51, 51))
         );
 
@@ -405,18 +403,29 @@ public class User extends javax.swing.JFrame {
         enter_username.setEnabled(false);
     }//GEN-LAST:event_enter_usernameActionPerformed
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         try {
             // TODO add your handling code here:
-            Modify_User updateUser = new Modify_User();
+            String q = "update user set first_name = ?, last_name = ?, email = ?, mobile = ?, dob = ?, address= ?, gender = ? where username = ?";
+            preparedStatement = connection.prepareStatement(q);
+            preparedStatement.setString(1, first_name.getText());
+            preparedStatement.setString(2, last_name.getText());
+            preparedStatement.setString(3, email.getText());
+            preparedStatement.setString(4, mobile_number.getText());
+            preparedStatement.setString(5, dob.getText());
+            preparedStatement.setString(6, address.getText());
+            preparedStatement.setString(7, gender.getText());
+            preparedStatement.setString(8, enter_username.getText());
+            preparedStatement.executeUpdate();
+            User updateUser = new User();
             updateUser.show();
             dispose();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_updateActionPerformed
+    }//GEN-LAST:event_modifyActionPerformed
 
     private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
         // TODO add your handling code here:
@@ -429,9 +438,9 @@ public class User extends javax.swing.JFrame {
             menu.show();
             dispose();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_backActionPerformed
 
@@ -460,21 +469,14 @@ public class User extends javax.swing.JFrame {
 
             if (rs.next()) {
                 first_name.setText(rs.getString("first_name"));
-                first_name.setEditable(false);
                 last_name.setText(rs.getString("last_name"));
-                last_name.setEditable(false);
                 mobile_number.setText(rs.getString("mobile"));
-                mobile_number.setEditable(false);
                 email.setText(rs.getString("email"));
-                email.setEditable(false);
                 dob.setText(rs.getString("dob"));
-                dob.setEditable(false);
                 address.setText(rs.getString("address"));
-                address.setEditable(false);
                 adhar_card_number.setText(rs.getString("adharcard_number"));
                 adhar_card_number.setEditable(false);
                 gender.setText(rs.getString("gender"));
-                gender.setEditable(false);
                 bank_name.setText("Moms Bank Of India");
                 bank_name.setEditable(false);
 
@@ -495,7 +497,7 @@ public class User extends javax.swing.JFrame {
                 ifsc.setEditable(false);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_get_DetailsActionPerformed
@@ -517,14 +519,22 @@ public class User extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modify_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modify_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modify_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modify_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -538,11 +548,11 @@ public class User extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new User().setVisible(true);
+                    new Modify_User().setVisible(true);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Modify_User.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -567,7 +577,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JTextField last_name;
     private javax.swing.JLabel login;
     private javax.swing.JTextField mobile_number;
-    private javax.swing.JButton update;
+    private javax.swing.JButton modify;
     private javax.swing.JLabel username;
     private javax.swing.JLabel username1;
     private javax.swing.JLabel username10;

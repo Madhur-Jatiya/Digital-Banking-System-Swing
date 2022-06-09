@@ -1,0 +1,22 @@
+first change directory to {C:\Program Files\MySQL\MySQL Server 8.0\bin}
+directory is same for both import/export
+
+for export madhur database
+{
+	bin-> mysqldump.exe
+
+	command:- mysqldump -u root -p madhur > madhur.sql
+
+	madhur.sql is new exported database name
+}
+
+for import madhur database
+{
+	bin->mysql.exe
+	
+	first create database using command line(Ex:-demo)
+	
+	command:- mysql -u root -p  demo < "C:\Users\91940\Desktop\New folder (2)\sample.sql"
+	
+	importing database diretory and name:- "C:\Users\.......\sample.sql"
+}
