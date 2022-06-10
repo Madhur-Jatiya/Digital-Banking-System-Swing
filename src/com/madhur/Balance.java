@@ -175,7 +175,8 @@ public class Balance extends javax.swing.JFrame {
     private void checkBalance() {
         try {
             // TODO add your handling code here:
-            File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing-copy\\filename.txt");
+//            File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing\\filename.txt");
+            File file = new File("filename.txt");
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             ArrayList<String> arrayList = new ArrayList<String>();
