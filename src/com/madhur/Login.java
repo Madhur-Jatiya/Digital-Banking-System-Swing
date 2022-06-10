@@ -4,6 +4,8 @@
  */
 package com.madhur;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +26,7 @@ public class Login extends javax.swing.JFrame {
     public Login() throws ClassNotFoundException, SQLException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
 
     }
 
@@ -174,6 +176,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!enterUsername.getText().isEmpty() && !password.getText().isEmpty()) {
             try {
+                FileWriter myWriter = new FileWriter("filename.txt");
+                myWriter.write(enterUsername.getText() + "\n");
+                myWriter.write(password.getText());
+                myWriter.close();
+
                 preparedStatement = connection.prepareStatement("select * from user where username = ? and password = ?");
                 preparedStatement.setString(1, enterUsername.getText());
                 preparedStatement.setString(2, password.getText());
@@ -188,7 +195,7 @@ public class Login extends javax.swing.JFrame {
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
 

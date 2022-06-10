@@ -4,14 +4,19 @@
  */
 package com.madhur;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.ComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,13 +32,22 @@ public class Bill extends javax.swing.JFrame {
     PreparedStatement preparedStatement;
     private int id;
     private String pinVerify;
+    private String s;
     private double balance;
     private double x;
 
-    public Bill() throws ClassNotFoundException, SQLException {
+    public Bill() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
+        File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing-copy\\filename.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+        ArrayList<String> arrayList = new ArrayList<String>();
+        while ((st = br.readLine()) != null) {
+            arrayList.add(st);
+        }
+        s = arrayList.get(0);
     }
 
     /**
@@ -55,9 +69,7 @@ public class Bill extends javax.swing.JFrame {
         confrim = new javax.swing.JButton();
         dropdown = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        hkjhnk = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
         pin = new javax.swing.JPasswordField();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -112,13 +124,8 @@ public class Bill extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Bill Type:-");
 
-        hkjhnk.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        hkjhnk.setText("Username:-");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Pin:-");
-
-        username.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         pin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
@@ -132,38 +139,33 @@ public class Bill extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(100, 100, 100)
-                                .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
+                                .addGap(19, 19, 19)
                                 .addComponent(confrim)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancel)))
-                        .addGap(145, 152, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hkjhnk)
-                            .addComponent(jLabel2)
-                            .addComponent(home_page2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bill_amount)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addGap(116, 116, 116))
+                                .addGap(31, 31, 31)
+                                .addComponent(cancel))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(home_page2)
+                                    .addComponent(jLabel3))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1))
+                                    .addComponent(bill_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(home_page))
-                .addGap(144, 144, 144))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,29 +174,29 @@ public class Bill extends javax.swing.JFrame {
                 .addComponent(home_page)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hkjhnk)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(home_page2)
-                        .addComponent(bill_amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel)
-                    .addComponent(confrim))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(bill_amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(home_page2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cancel)
+                            .addComponent(confrim))
+                        .addContainerGap(40, Short.MAX_VALUE))))
         );
 
         pack();
@@ -205,22 +207,15 @@ public class Bill extends javax.swing.JFrame {
     }//GEN-LAST:event_bill_amountActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        try {
-            // TODO add your handling code here:
-            Menu menu = new Menu();
-            menu.show();
-            dispose();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Menu menu = new Menu();
+        menu.show();
+        dispose();
     }//GEN-LAST:event_cancelActionPerformed
 
     public void findUserId() throws ClassNotFoundException, SQLException {
         try {
             preparedStatement = connection.prepareStatement("select id from user where username = ?");
-            preparedStatement.setString(1, username.getText());
+            preparedStatement.setString(1, s);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
@@ -236,7 +231,7 @@ public class Bill extends javax.swing.JFrame {
 
     public void balanceCheck() throws SQLException {
         preparedStatement = connection.prepareStatement("select account_balance from user where username = ?");
-        preparedStatement.setString(1, username.getText());
+        preparedStatement.setString(1, s);
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
@@ -247,7 +242,7 @@ public class Bill extends javax.swing.JFrame {
                 balance = balance - x;
                 preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
                 preparedStatement.setDouble(1, balance);
-                preparedStatement.setString(2, username.getText());
+                preparedStatement.setString(2, s);
                 preparedStatement.executeUpdate();
             } else {
                 JOptionPane.showMessageDialog(this, "insufficient balance");
@@ -257,7 +252,7 @@ public class Bill extends javax.swing.JFrame {
 
     public void pinVerification() throws SQLException {
         preparedStatement = connection.prepareStatement("select pin from user where username = ?");
-        preparedStatement.setString(1, username.getText());
+        preparedStatement.setString(1, s);
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
@@ -398,6 +393,8 @@ public class Bill extends javax.swing.JFrame {
                     Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -408,7 +405,6 @@ public class Bill extends javax.swing.JFrame {
     private javax.swing.JButton cancel;
     private javax.swing.JButton confrim;
     private javax.swing.JComboBox<String> dropdown;
-    private javax.swing.JLabel hkjhnk;
     private javax.swing.JLabel home_page;
     private javax.swing.JLabel home_page2;
     private javax.swing.JButton jButton1;
@@ -417,6 +413,5 @@ public class Bill extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPasswordField pin;
-    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,17 @@
  */
 package com.madhur;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,11 +31,20 @@ public class AddMoney extends javax.swing.JFrame {
     private Connection connection;
     private PreparedStatement preparedStatement;
     private String pinVerify;
+    private String s;
 
-    public AddMoney() throws ClassNotFoundException, SQLException {
+    public AddMoney() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
+        File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing-copy\\filename.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+        ArrayList<String> arrayList = new ArrayList<String>();
+        while ((st = br.readLine()) != null) {
+            arrayList.add(st);
+        }
+        s = arrayList.get(0);
     }
 
     /**
@@ -48,9 +63,7 @@ public class AddMoney extends javax.swing.JFrame {
         add_amount = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         add = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
         pin = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,13 +104,8 @@ public class AddMoney extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Username:-");
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Pin:-");
-
-        username.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         pin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
@@ -108,54 +116,48 @@ public class AddMoney extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
+                        .addGap(129, 129, 129)
                         .addComponent(add)
                         .addGap(18, 18, 18)
                         .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lable1)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(home_page2))
+                        .addComponent(jLabel3)
+                        .addGap(65, 65, 65)
+                        .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(home_page2)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(pin, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(add_amount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel1)))))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(add_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lable1))
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(22, 22, 22)
                 .addComponent(lable1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(home_page2)
+                    .addComponent(add_amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(home_page2)
-                        .addComponent(add_amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                        .addComponent(jLabel3)
+                        .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(add))
@@ -166,16 +168,10 @@ public class AddMoney extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        try {
             // TODO add your handling code here:
             Menu menu = new Menu();
             menu.show();
             dispose();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_backActionPerformed
 
     private void add_amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_amountActionPerformed
@@ -184,7 +180,7 @@ public class AddMoney extends javax.swing.JFrame {
 
     public void pinVerification() throws SQLException {
         preparedStatement = connection.prepareStatement("select pin from user where username = ?");
-        preparedStatement.setString(1, username.getText());
+        preparedStatement.setString(1, s);
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
@@ -200,7 +196,7 @@ public class AddMoney extends javax.swing.JFrame {
             pinVerification();
             if (pinVerify.equals(pin.getText())) {
                 preparedStatement = connection.prepareStatement("select account_balance from user where username = ?");
-                preparedStatement.setString(1, username.getText());
+                preparedStatement.setString(1, s);
                 ResultSet rs = preparedStatement.executeQuery();
                 if (rs.next()) {
                     double balance = rs.getDouble("account_balance");
@@ -209,7 +205,7 @@ public class AddMoney extends javax.swing.JFrame {
                     balance = balance + x;
                     preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
                     preparedStatement.setDouble(1, balance);
-                    preparedStatement.setString(2, username.getText());
+                    preparedStatement.setString(2, s);
                     preparedStatement.executeUpdate();
                     Menu menu = new Menu();
                     menu.show();
@@ -221,8 +217,6 @@ public class AddMoney extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Incorrect pin");
             }
 
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -295,6 +289,8 @@ public class AddMoney extends javax.swing.JFrame {
                     Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -306,11 +302,9 @@ public class AddMoney extends javax.swing.JFrame {
     private javax.swing.JButton back;
     private javax.swing.JLabel home_page2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lable1;
     private javax.swing.JPasswordField pin;
-    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,13 +4,17 @@
  */
 package com.madhur;
 
-import static java.lang.Math.random;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,13 +27,61 @@ public class User extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
-    Connection connection;
-    PreparedStatement preparedStatement;
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private String s;
 
-    public User() throws ClassNotFoundException, SQLException {
+    public User() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
+        File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing-copy\\filename.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+        ArrayList<String> arrayList = new ArrayList<String>();
+        while ((st = br.readLine()) != null) {
+            arrayList.add(st);
+        }
+        s = arrayList.get(0);
+        getDetails();
+    }
+
+    private void getDetails() {
+        try {
+            // TODO add your handling code here:
+            preparedStatement = connection.prepareStatement("select * from user where username = ?");
+            preparedStatement.setString(1, s);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                enter_username.setText(rs.getString("username"));
+                enter_username.setEditable(false);
+                first_name.setText(rs.getString("first_name"));
+                first_name.setEditable(false);
+                last_name.setText(rs.getString("last_name"));
+                last_name.setEditable(false);
+                mobile_number.setText(rs.getString("mobile"));
+                mobile_number.setEditable(false);
+                email.setText(rs.getString("email"));
+                email.setEditable(false);
+                dob.setText(rs.getString("dob"));
+                dob.setEditable(false);
+                address.setText(rs.getString("address"));
+                address.setEditable(false);
+                adhar_card_number.setText(rs.getString("adharcard_number"));
+                adhar_card_number.setEditable(false);
+                gender.setText(rs.getString("gender"));
+                gender.setEditable(false);
+                bank_name.setText(rs.getString("bank_name"));
+                bank_name.setEditable(false);
+                account_num.setText(rs.getString("account_number"));
+                account_num.setEditable(false);
+                ifsc.setText(rs.getString("ifsc_code"));
+                ifsc.setEditable(false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -72,7 +124,6 @@ public class User extends javax.swing.JFrame {
         ifsc = new javax.swing.JTextField();
         username13 = new javax.swing.JLabel();
         username14 = new javax.swing.JLabel();
-        get_Details = new javax.swing.JButton();
 
         username.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         username.setText("username:-");
@@ -226,14 +277,6 @@ public class User extends javax.swing.JFrame {
         username14.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         username14.setText("Account Number:-");
 
-        get_Details.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        get_Details.setText("Get Details");
-        get_Details.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                get_DetailsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,76 +284,69 @@ public class User extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(613, 613, 613)
-                        .addComponent(username11))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(383, 383, 383)
-                        .addComponent(update)
-                        .addGap(44, 44, 44)
-                        .addComponent(back))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(username8)
-                            .addGap(34, 34, 34)
-                            .addComponent(address))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username6)
+                            .addComponent(username12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hnufjg)
+                                    .addComponent(username13)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(hnufjg)
-                                        .addComponent(username13)
-                                        .addComponent(username5))
-                                    .addGap(30, 30, 30)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(bank_name, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(enter_username, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(username2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(username5)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bank_name, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(gender, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(dob, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(first_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                                        .addComponent(ifsc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(username1)
+                                            .addComponent(username7)
+                                            .addComponent(username4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(first_name, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(ifsc, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(username6)
-                                .addComponent(username12)
-                                .addComponent(username1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(57, 57, 57)
-                                            .addComponent(username10)
-                                            .addGap(45, 45, 45)
-                                            .addComponent(adhar_card_number, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(username2)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(username14)
-                                                    .addGap(82, 82, 82)
-                                                    .addComponent(account_num, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(enter_username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(mobile_number, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(last_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(username7)
-                                                        .addGap(155, 155, 155))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(username4)
-                                                        .addGap(100, 100, 100)))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(mobile_number, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(last_name, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGap(34, 34, 34))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(get_Details, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(392, 392, 392))))))
-                .addGap(42, 42, 42))
+                                                .addComponent(username10)
+                                                .addGap(45, 45, 45)
+                                                .addComponent(adhar_card_number, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(username14))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(account_num, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(76, 76, 76))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(613, 613, 613)
+                                .addComponent(username11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(383, 383, 383)
+                                .addComponent(update)
+                                .addGap(44, 44, 44)
+                                .addComponent(back))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(username8)
+                                .addGap(18, 18, 18)
+                                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(464, 464, 464)
+                .addGap(537, 537, 537)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(login))
@@ -323,12 +359,7 @@ public class User extends javax.swing.JFrame {
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(username1)
-                    .addComponent(enter_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(get_Details, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username12)
                     .addComponent(bank_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,8 +369,8 @@ public class User extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ifsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username13)
-                    .addComponent(username2)
-                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(username1)
+                    .addComponent(enter_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username6)
@@ -348,10 +379,10 @@ public class User extends javax.swing.JFrame {
                     .addComponent(last_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username5)
                     .addComponent(username4)
-                    .addComponent(mobile_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mobile_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(username2)
+                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -360,13 +391,20 @@ public class User extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(adhar_card_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(username10)))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(username8)
-                    .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(username11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(username11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username5))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username8)
+                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(update))
@@ -415,6 +453,8 @@ public class User extends javax.swing.JFrame {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateActionPerformed
 
@@ -423,16 +463,9 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_genderActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        try {
-            // TODO add your handling code here:
-            Menu menu = new Menu();
-            menu.show();
-            dispose();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Menu menu = new Menu();
+        menu.show();
+        dispose();
     }//GEN-LAST:event_backActionPerformed
 
     private void adhar_card_numberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adhar_card_numberActionPerformed
@@ -450,55 +483,6 @@ public class User extends javax.swing.JFrame {
     private void ifscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ifscActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ifscActionPerformed
-
-    private void get_DetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_get_DetailsActionPerformed
-        try {
-            // TODO add your handling code here:
-            preparedStatement = connection.prepareStatement("select * from user where username = ?");
-            preparedStatement.setString(1, enter_username.getText());
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                first_name.setText(rs.getString("first_name"));
-                first_name.setEditable(false);
-                last_name.setText(rs.getString("last_name"));
-                last_name.setEditable(false);
-                mobile_number.setText(rs.getString("mobile"));
-                mobile_number.setEditable(false);
-                email.setText(rs.getString("email"));
-                email.setEditable(false);
-                dob.setText(rs.getString("dob"));
-                dob.setEditable(false);
-                address.setText(rs.getString("address"));
-                address.setEditable(false);
-                adhar_card_number.setText(rs.getString("adharcard_number"));
-                adhar_card_number.setEditable(false);
-                gender.setText(rs.getString("gender"));
-                gender.setEditable(false);
-                bank_name.setText("Moms Bank Of India");
-                bank_name.setEditable(false);
-
-                long min = 32000000000L;
-                long max = 33999999999L;
-                long i = (long) (Math.random() * (max - min + 1) + min);
-                String s = String.valueOf(i);
-                account_num.setText(s);
-                account_num.setEditable(false);
-                
-                int min1 = 1000000;
-                int max1 = 9999999;
-                int l = (int) (Math.random() * (max1 - min1 + 1) + min1);
-                String s1 = String.valueOf(l);
-                String s2 = "MBIN";
-                s2 = s2.concat(s1);
-                ifsc.setText(s2);
-                ifsc.setEditable(false);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_get_DetailsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -543,6 +527,8 @@ public class User extends javax.swing.JFrame {
                     Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -560,7 +546,6 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JTextField enter_username;
     private javax.swing.JTextField first_name;
     private javax.swing.JTextField gender;
-    private javax.swing.JButton get_Details;
     private javax.swing.JLabel hnufjg;
     private javax.swing.JTextField ifsc;
     private javax.swing.JSeparator jSeparator2;

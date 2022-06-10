@@ -4,11 +4,17 @@
  */
 package com.madhur;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,13 +29,22 @@ public class Debit extends javax.swing.JFrame {
     PreparedStatement preparedStatement;
     private int id;
     private String pinVerify;
+    private String s;
     private double balance;
     private double x;
 
-    public Debit() throws ClassNotFoundException, SQLException {
+    public Debit() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
+        File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing-copy\\filename.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+        ArrayList<String> arrayList = new ArrayList<String>();
+        while ((st = br.readLine()) != null) {
+            arrayList.add(st);
+        }
+        s = arrayList.get(0);
     }
 
     /**
@@ -51,8 +66,6 @@ public class Debit extends javax.swing.JFrame {
         cancel = new javax.swing.JButton();
         send = new javax.swing.JButton();
         reciever_username = new javax.swing.JTextField();
-        yu = new javax.swing.JLabel();
-        sender_username = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         pin = new javax.swing.JPasswordField();
 
@@ -102,11 +115,6 @@ public class Debit extends javax.swing.JFrame {
 
         reciever_username.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
-        yu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        yu.setText("Your Username:-");
-
-        sender_username.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Pin:-");
 
@@ -126,13 +134,11 @@ public class Debit extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(yu)
                             .addComponent(ru)
                             .addComponent(home_page2)
                             .addComponent(jLabel2))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sender_username)
                             .addComponent(reciever_username)
                             .addComponent(amount)
                             .addComponent(pin)))
@@ -159,22 +165,17 @@ public class Debit extends javax.swing.JFrame {
                 .addComponent(home_page)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(yu)
-                            .addComponent(sender_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ru)
-                            .addComponent(reciever_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
-                    .addComponent(home_page2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(ru)
+                    .addComponent(reciever_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(home_page2))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,22 +194,15 @@ public class Debit extends javax.swing.JFrame {
     }//GEN-LAST:event_amountActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        try {
-            // TODO add your handling code here:
-            Menu menu = new Menu();
-            menu.show();
-            dispose();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Menu menu = new Menu();
+        menu.show();
+        dispose();
     }//GEN-LAST:event_cancelActionPerformed
 
     public void findUserId() throws ClassNotFoundException, SQLException {
         try {
             preparedStatement = connection.prepareStatement("select id from user where username = ?");
-            preparedStatement.setString(1, sender_username.getText());
+            preparedStatement.setString(1, s);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
@@ -224,7 +218,7 @@ public class Debit extends javax.swing.JFrame {
 
     public void pinVerification() throws SQLException {
         preparedStatement = connection.prepareStatement("select pin from user where username = ?");
-        preparedStatement.setString(1, sender_username.getText());
+        preparedStatement.setString(1, s);
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
@@ -236,7 +230,7 @@ public class Debit extends javax.swing.JFrame {
 
     public void balanceCheck() throws SQLException {
         preparedStatement = connection.prepareStatement("select account_balance from user where username = ?");
-        preparedStatement.setString(1, sender_username.getText());
+        preparedStatement.setString(1, s);
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
@@ -247,7 +241,7 @@ public class Debit extends javax.swing.JFrame {
                 balance = balance - x;
                 preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
                 preparedStatement.setDouble(1, balance);
-                preparedStatement.setString(2, sender_username.getText());
+                preparedStatement.setString(2, s);
                 preparedStatement.executeUpdate();
             } else {
                 JOptionPane.showMessageDialog(this, "insufficient balance");
@@ -327,6 +321,8 @@ public class Debit extends javax.swing.JFrame {
                     Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -345,7 +341,5 @@ public class Debit extends javax.swing.JFrame {
     private javax.swing.JTextField reciever_username;
     private javax.swing.JLabel ru;
     private javax.swing.JButton send;
-    private javax.swing.JTextField sender_username;
-    private javax.swing.JLabel yu;
     // End of variables declaration//GEN-END:variables
 }

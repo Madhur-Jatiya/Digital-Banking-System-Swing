@@ -38,110 +38,100 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="613" max="-2" attributes="0"/>
-                      <Component id="username11" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="383" max="-2" attributes="0"/>
-                      <Component id="modify" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="back" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="username8" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="address" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="hnufjg" min="-2" max="-2" attributes="0"/>
-                                      <Component id="username13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="username5" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="bank_name" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
-                                      <Component id="enter_username" alignment="0" min="-2" pref="277" max="-2" attributes="0"/>
-                                      <Component id="gender" min="-2" pref="208" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="first_name" alignment="1" min="-2" pref="279" max="-2" attributes="0"/>
-                                          <Component id="ifsc" min="-2" pref="279" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="email" min="-2" pref="393" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="username6" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="username12" min="-2" max="-2" attributes="0"/>
-                              <Component id="username1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="613" max="-2" attributes="0"/>
+                              <Component id="username11" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                          <Component id="username10" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="adhar_card_number" min="-2" pref="245" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="383" max="-2" attributes="0"/>
+                              <Component id="modify" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="back" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="username8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="address" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="username2" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="dob" min="-2" pref="245" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="hnufjg" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="username13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="username5" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="email" min="-2" pref="393" max="-2" attributes="0"/>
+                                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                                  <Component id="first_name" alignment="0" pref="295" max="32767" attributes="0"/>
+                                                                  <Component id="ifsc" alignment="0" max="32767" attributes="0"/>
+                                                                  <Component id="bank_name" alignment="0" max="32767" attributes="0"/>
+                                                              </Group>
+                                                              <Component id="gender" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="username2" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="dob" max="32767" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="username14" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                                                  <Component id="account_num" min="-2" pref="245" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="username12" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="username7" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="username4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="mobile_number" min="-2" pref="245" max="-2" attributes="0"/>
-                                                  <Component id="last_name" min="-2" pref="245" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="username6" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="482" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="username14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="username1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="username7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="username4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="username10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="adhar_card_number" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <Component id="enter_username" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <Component id="account_num" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <Component id="last_name" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
+                                          <Component id="mobile_number" min="-2" pref="245" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="get_Details" min="-2" pref="185" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="392" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace pref="100" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="464" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="login" max="32767" attributes="0"/>
+                          <Component id="jSeparator2" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="464" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="login" max="32767" attributes="0"/>
-                  <Component id="jSeparator2" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,16 +139,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="login" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="login" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator2" min="-2" pref="16" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="username1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="enter_username" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="get_Details" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="username12" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bank_name" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -169,8 +153,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ifsc" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="username13" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="username2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="dob" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="username1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="enter_username" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -181,23 +165,26 @@
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="email" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="username5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="username4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="mobile_number" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="username2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dob" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="hnufjg" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="gender" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="hnufjg" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="gender" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="username10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="adhar_card_number" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="username5" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="adhar_card_number" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="username10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="email" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="username8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="address" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -481,17 +468,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Account Number:-"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="get_Details">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Get Details"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="get_DetailsActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

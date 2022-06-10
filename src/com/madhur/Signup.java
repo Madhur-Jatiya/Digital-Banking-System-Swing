@@ -27,7 +27,7 @@ public class Signup extends javax.swing.JFrame {
     public Signup() throws ClassNotFoundException, SQLException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
     }
 
     /**
@@ -446,7 +446,7 @@ public class Signup extends javax.swing.JFrame {
         if (password.getText().equals(confrimpassword.getText())) {
             System.out.println("password success");
             try {
-                String q = "insert into user(username,password,first_name,last_name,email,mobile,dob,address,adharcard_number,account_balance,gender,pin) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                String q = "insert into user(username,password,first_name,last_name,email,mobile,dob,address,adharcard_number,account_balance,gender,pin,account_number,ifsc_code) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 preparedStatement = connection.prepareStatement(q);
                 preparedStatement.setString(1, enterUsername.getText());
                 preparedStatement.setString(2, password.getText());
@@ -459,6 +459,20 @@ public class Signup extends javax.swing.JFrame {
                 preparedStatement.setString(9, adharcard.getText());
                 preparedStatement.setString(10, openingbalance.getText());
 
+                long min = 32000000000L;
+                long max = 33999999999L;
+                long i = (long) (Math.random() * (max - min + 1) + min);
+                String s = String.valueOf(i);
+                preparedStatement.setString(13, s);
+
+                int min1 = 1000000;
+                int max1 = 9999999;
+                int l = (int) (Math.random() * (max1 - min1 + 1) + min1);
+                String s1 = String.valueOf(l);
+                String s2 = "MBIN";
+                s2 = s2.concat(s1);
+                preparedStatement.setString(14, s2);
+
                 if (male.isSelected()) {
                     preparedStatement.setString(11, male.getText());
                 } else if (female.isSelected()) {
@@ -469,10 +483,10 @@ public class Signup extends javax.swing.JFrame {
 
                 preparedStatement.setString(12, pin.getText());
                 preparedStatement.executeUpdate();
+
             } catch (SQLException ex) {
                 Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             try {
                 Login login = new Login();
                 login.show();

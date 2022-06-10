@@ -20,3 +20,6 @@ for import madhur database
 	
 	importing database diretory and name:- "C:\Users\.......\sample.sql"
 }
+
+**
+Require Changes in code = replace my mysql username and pswd with your username and pswd.

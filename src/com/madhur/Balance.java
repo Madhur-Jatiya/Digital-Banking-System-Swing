@@ -4,11 +4,17 @@
  */
 package com.madhur;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,14 +28,14 @@ public class Balance extends javax.swing.JFrame {
     /**
      * Creates new form Balance
      */
-    
     private Connection connection;
     private PreparedStatement preparedStatement;
-    
+
     public Balance() throws ClassNotFoundException, SQLException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
+        checkBalance();
     }
 
     /**
@@ -161,55 +167,59 @@ public class Balance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        try {
-            // TODO add your handling code here:
-            Menu menu = new Menu();
-            menu.show();
-            dispose();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Balance.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Balance.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Menu menu = new Menu();
+        menu.show();
+        dispose();
     }//GEN-LAST:event_backActionPerformed
 
-    private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
+    private void checkBalance() {
         try {
             // TODO add your handling code here:
-            preparedStatement = connection.prepareStatement("select account_balance from user where username = ?");
-            preparedStatement.setString(1, account_holder_name.getText());
+            File file = new File("C:\\Users\\91940\\Documents\\NetBeansProjects\\DigitalPaymentSystem-swing-copy\\filename.txt");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String st;
+            ArrayList<String> arrayList = new ArrayList<String>();
+            while ((st = br.readLine()) != null) {
+                arrayList.add(st);
+            }
+
+            String s = arrayList.get(0);
+
+            preparedStatement = connection.prepareStatement("select account_balance,username from user where username = ?");
+            preparedStatement.setString(1, s);
             ResultSet rs = preparedStatement.executeQuery();
-            
+
             if (rs.next()) {
+                account_holder_name.setText(rs.getString("username"));
+                account_holder_name.setEditable(false);
                 balance.setText(rs.getString("account_balance"));
                 balance.setEditable(false);
-//                balance.setEnabled(false);
-                
-            }
-            
-            else
-            {
+
+            } else {
                 JOptionPane.showMessageDialog(this, "Incorrect username");
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Balance.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Balance.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Balance.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+    }
+
+    private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
+        checkBalance();
     }//GEN-LAST:event_checkActionPerformed
 
-    
-    private void account_holder_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_account_holder_nameActionPerformed
-        // TODO add your handling code here:
-//        account_holder_name.setEditable(true);
-//        account_holder_name.setEnabled(false);
-        
-        
-    }//GEN-LAST:event_account_holder_nameActionPerformed
 
     private void balanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_balanceActionPerformed
+
+    private void account_holder_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_account_holder_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_account_holder_nameActionPerformed
 
     /**
      * @param args the command line arguments
