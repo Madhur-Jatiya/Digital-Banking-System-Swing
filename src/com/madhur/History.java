@@ -148,8 +148,6 @@ public class History extends javax.swing.JFrame {
                     Object o[] = {rs.getString("reciever_name"), rs.getString("amount"), rs.getString("type"), rs.getString("date_time")};
                     tm.addRow(o);
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Incorrect username");
             }
         } catch (SQLException ex) {
             Logger.getLogger(History.class.getName()).log(Level.SEVERE, null, ex);
