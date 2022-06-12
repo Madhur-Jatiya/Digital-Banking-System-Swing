@@ -78,7 +78,15 @@ public class History extends javax.swing.JFrame {
             new String [] {
                 "Reciever", "Amount", "Type", "Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         back.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
