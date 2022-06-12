@@ -143,11 +143,9 @@ public class History extends javax.swing.JFrame {
             table.setRowHeight(35);
             table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 25));
             tm.setRowCount(0);
-            if (rs.next()) {
-                while (rs.next()) {
-                    Object o[] = {rs.getString("reciever_name"), rs.getString("amount"), rs.getString("type"), rs.getString("date_time")};
-                    tm.addRow(o);
-                }
+            while (rs.next()) {
+                Object o[] = {rs.getString("reciever_name"), rs.getString("amount"), rs.getString("type"), rs.getString("date_time")};
+                tm.addRow(o);
             }
         } catch (SQLException ex) {
             Logger.getLogger(History.class.getName()).log(Level.SEVERE, null, ex);
