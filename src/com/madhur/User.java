@@ -95,8 +95,6 @@ public class User extends javax.swing.JFrame {
 
         username = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        login = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         username1 = new javax.swing.JLabel();
         first_name = new javax.swing.JTextField();
         update = new javax.swing.JButton();
@@ -124,20 +122,14 @@ public class User extends javax.swing.JFrame {
         ifsc = new javax.swing.JTextField();
         username13 = new javax.swing.JLabel();
         username14 = new javax.swing.JLabel();
+        home_page = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         username.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         username.setText("username:-");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
-
-        login.setFont(new java.awt.Font("Kruti Dev 040 ", 1, 36)); // NOI18N
-        login.setText("User Details");
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setAlignmentX(1.0F);
-        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         username1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         username1.setText("Username:-");
@@ -277,6 +269,14 @@ public class User extends javax.swing.JFrame {
         username14.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         username14.setText("Account Number:-");
 
+        home_page.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        home_page.setText("User Details");
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setAlignmentX(1.0F);
+        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,20 +346,20 @@ public class User extends javax.swing.JFrame {
                                 .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(537, 537, 537)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(559, 559, 559)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jSeparator2)
+                    .addComponent(home_page))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(home_page)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username12)
                     .addComponent(bank_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -547,10 +547,10 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JTextField first_name;
     private javax.swing.JTextField gender;
     private javax.swing.JLabel hnufjg;
+    private javax.swing.JLabel home_page;
     private javax.swing.JTextField ifsc;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField last_name;
-    private javax.swing.JLabel login;
     private javax.swing.JTextField mobile_number;
     private javax.swing.JButton update;
     private javax.swing.JLabel username;
