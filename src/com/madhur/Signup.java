@@ -41,8 +41,6 @@ public class Signup extends javax.swing.JFrame {
 
         username = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        login = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         username1 = new javax.swing.JLabel();
         username2 = new javax.swing.JLabel();
         enterUsername = new javax.swing.JTextField();
@@ -75,20 +73,14 @@ public class Signup extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pin = new javax.swing.JPasswordField();
+        home_page = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         username.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         username.setText("username:-");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
-
-        login.setFont(new java.awt.Font("Kruti Dev 040 ", 1, 36)); // NOI18N
-        login.setText("Create Account");
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setAlignmentX(1.0F);
-        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         username1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         username1.setText("Username:-");
@@ -253,6 +245,14 @@ public class Signup extends javax.swing.JFrame {
 
         pin.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
+        home_page.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        home_page.setText("Sign Up");
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setAlignmentX(1.0F);
+        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -327,19 +327,19 @@ public class Signup extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login))
-                .addGap(348, 348, 348))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jSeparator2)
+                    .addComponent(home_page))
+                .addGap(430, 430, 430))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(home_page)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(username3)
@@ -585,10 +585,10 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JRadioButton female;
     private javax.swing.JTextField firstname;
     private javax.swing.JLabel gender;
+    private javax.swing.JLabel home_page;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField lastname;
-    private javax.swing.JLabel login;
     private javax.swing.JRadioButton male;
     private javax.swing.JTextField mobile;
     private javax.swing.JTextField openingbalance;

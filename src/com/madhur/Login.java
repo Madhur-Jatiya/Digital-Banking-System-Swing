@@ -40,8 +40,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         username = new javax.swing.JLabel();
-        login = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         username1 = new javax.swing.JLabel();
         username2 = new javax.swing.JLabel();
         enterUsername = new javax.swing.JTextField();
@@ -49,20 +47,14 @@ public class Login extends javax.swing.JFrame {
         reset = new javax.swing.JButton();
         password = new javax.swing.JPasswordField();
         back = new javax.swing.JButton();
+        home_page = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
         username.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         username.setText("username:-");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 51));
-
-        login.setFont(new java.awt.Font("Kruti Dev 040 ", 1, 36)); // NOI18N
-        login.setText("Account Login");
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setAlignmentX(1.0F);
-        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         username1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         username1.setText("Username:-");
@@ -98,12 +90,19 @@ public class Login extends javax.swing.JFrame {
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/madhur/back.png"))); // NOI18N
         back.setBorderPainted(false);
         back.setContentAreaFilled(false);
-        back.setOpaque(false);
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
             }
         });
+
+        home_page.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        home_page.setText("Log In");
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setAlignmentX(1.0F);
+        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,21 +131,21 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(reset)
                         .addGap(83, 83, 83)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jSeparator2)
+                    .addComponent(home_page, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(149, 149, 149))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(home_page)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username1)
                     .addComponent(enterUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -262,8 +261,8 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JTextField enterUsername;
+    private javax.swing.JLabel home_page;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel login;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton reset;
     private javax.swing.JButton submit;
