@@ -39,7 +39,7 @@ public class Bill extends javax.swing.JFrame {
     public Bill() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/madhur1", "root", "My$ql123");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "My$ql123");
         File file = new File("filename.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st;
