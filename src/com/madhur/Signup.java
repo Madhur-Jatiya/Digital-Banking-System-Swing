@@ -10,7 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import com.toedter.calendar.JCalendar;
+import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -69,12 +74,12 @@ public class Signup extends javax.swing.JFrame {
         adharcard = new javax.swing.JTextField();
         username11 = new javax.swing.JLabel();
         xyz = new javax.swing.JLabel();
-        dob = new javax.swing.JTextField();
         back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pin = new javax.swing.JPasswordField();
         home_page = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        dob = new com.toedter.calendar.JDateChooser();
 
         username.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         username.setText("username:-");
@@ -83,10 +88,10 @@ public class Signup extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 0, 51));
 
         username1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username1.setText("Username:-");
+        username1.setText("*Username:-");
 
         username2.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username2.setText("Confrim Password:-");
+        username2.setText("*Confrim Password:-");
 
         enterUsername.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         enterUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +117,7 @@ public class Signup extends javax.swing.JFrame {
         });
 
         username3.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username3.setText("Password:-");
+        username3.setText("*Password:-");
 
         email.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         email.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +127,10 @@ public class Signup extends javax.swing.JFrame {
         });
 
         username4.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username4.setText("Mobile Number:-");
+        username4.setText("*Mobile Number:-");
 
         username5.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username5.setText("Email Id:-");
+        username5.setText("*Email Id:-");
 
         firstname.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         firstname.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +140,7 @@ public class Signup extends javax.swing.JFrame {
         });
 
         username6.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username6.setText("First Name:-");
+        username6.setText("*First Name:-");
 
         mobile.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         mobile.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +150,7 @@ public class Signup extends javax.swing.JFrame {
         });
 
         username7.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username7.setText("Last Name:-");
+        username7.setText("*Last Name:-");
 
         lastname.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lastname.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +194,7 @@ public class Signup extends javax.swing.JFrame {
         password.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
         username8.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username8.setText("Permanent Address:-");
+        username8.setText("*Permanent Address:-");
 
         address.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         address.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +204,7 @@ public class Signup extends javax.swing.JFrame {
         });
 
         username9.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username9.setText("Opening Balance:-");
+        username9.setText("*Opening Balance:-");
 
         openingbalance.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         openingbalance.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +214,7 @@ public class Signup extends javax.swing.JFrame {
         });
 
         username10.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        username10.setText("Adhar Card Number:-");
+        username10.setText("*Adhar Card Number:-");
 
         adharcard.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         adharcard.addActionListener(new java.awt.event.ActionListener() {
@@ -222,14 +227,7 @@ public class Signup extends javax.swing.JFrame {
         username11.setText("Rupees");
 
         xyz.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        xyz.setText("Date Of Birth:-");
-
-        dob.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        dob.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobActionPerformed(evt);
-            }
-        });
+        xyz.setText("*Date Of Birth:-");
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/madhur/back.png"))); // NOI18N
         back.setBorderPainted(false);
@@ -241,7 +239,7 @@ public class Signup extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel1.setText("Pin:-");
+        jLabel1.setText("*Pin:-");
 
         pin.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
 
@@ -253,6 +251,8 @@ public class Signup extends javax.swing.JFrame {
         jSeparator2.setAlignmentX(1.0F);
         jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
+        dob.setDateFormatString("dd-MM-yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -263,26 +263,11 @@ public class Signup extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(username8)
                         .addGap(34, 34, 34)
-                        .addComponent(address))
+                        .addComponent(address)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(username4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(username9, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(username10, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(openingbalance)
-                                    .addComponent(adharcard, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(username11))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(back)
-                                .addGap(240, 240, 240)
-                                .addComponent(submit)
-                                .addGap(18, 18, 18)
-                                .addComponent(reset))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -322,9 +307,24 @@ public class Signup extends javax.swing.JFrame {
                                     .addComponent(lastname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                                     .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
-                                    .addComponent(dob))))
-                        .addGap(0, 19, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(dob, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(username9, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(username10, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(openingbalance)
+                                    .addComponent(adharcard, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(username11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(back)
+                                .addGap(240, 240, 240)
+                                .addComponent(submit)
+                                .addGap(18, 18, 18)
+                                .addComponent(reset)))
+                        .addGap(0, 49, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -365,13 +365,14 @@ public class Signup extends javax.swing.JFrame {
                     .addComponent(username5)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gender)
-                    .addComponent(male)
-                    .addComponent(female)
-                    .addComponent(other)
-                    .addComponent(xyz)
-                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(gender)
+                        .addComponent(male)
+                        .addComponent(female)
+                        .addComponent(other)
+                        .addComponent(xyz))
+                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username8)
@@ -442,7 +443,7 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_maleActionPerformed
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         if (password.getText().equals(confrimpassword.getText())) {
             System.out.println("password success");
             try {
@@ -454,7 +455,10 @@ public class Signup extends javax.swing.JFrame {
                 preparedStatement.setString(4, lastname.getText());
                 preparedStatement.setString(5, email.getText());
                 preparedStatement.setString(6, mobile.getText());
-                preparedStatement.setString(7, dob.getText());
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String date = dateFormat.format(dob.getDate());
+                preparedStatement.setString(7, date);
                 preparedStatement.setString(8, address.getText());
                 preparedStatement.setString(9, adharcard.getText());
                 preparedStatement.setString(10, openingbalance.getText());
@@ -485,27 +489,27 @@ public class Signup extends javax.swing.JFrame {
                 preparedStatement.executeUpdate();
 
             } catch (SQLException ex) {
-                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
             try {
                 Login login = new Login();
                 login.show();
                 dispose();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException | SQLException ex) {
+                System.out.println(ex);
             }
 
         } else {
             JOptionPane.showMessageDialog(this, "confrim pswd not matched with password");
         }
-
     }//GEN-LAST:event_submitActionPerformed
 
-    private void dobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dobActionPerformed
+        HomePage homePage = new HomePage();
+        homePage.show();
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
@@ -518,18 +522,11 @@ public class Signup extends javax.swing.JFrame {
         mobile.setText(null);
         email.setText(null);
         buttonGroup1.clearSelection();
-        dob.setText(null);
+        dob.setCalendar(null);
         address.setText(null);
         adharcard.setText(null);
         openingbalance.setText(null);
     }//GEN-LAST:event_resetActionPerformed
-
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // TODO add your handling code here:
-        HomePage homePage = new HomePage();
-        homePage.show();
-        dispose();
-    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -564,10 +561,8 @@ public class Signup extends javax.swing.JFrame {
             public void run() {
                 try {
                     new Signup().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Signup.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException | SQLException ex) {
+                    System.out.println(ex);
                 }
             }
         });
@@ -579,7 +574,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JButton back;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPasswordField confrimpassword;
-    private javax.swing.JTextField dob;
+    private com.toedter.calendar.JDateChooser dob;
     private javax.swing.JTextField email;
     private javax.swing.JTextField enterUsername;
     private javax.swing.JRadioButton female;
