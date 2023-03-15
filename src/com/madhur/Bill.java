@@ -276,8 +276,6 @@ public class Bill extends javax.swing.JFrame {
             String s = (String.valueOf(dropdown.getSelectedItem()));
             preparedStatement = connection.prepareStatement("insert into transaction(reciever_name,amount,userid,type) values(?,?,?,?)");
             preparedStatement.setString(1, s);
-//            try {
-//                Integer.parseInt(bill_amount.getText());
             if (balance - x >= 0) {
                 preparedStatement.setString(2, bill_amount.getText());
                 preparedStatement.setInt(3, id);
@@ -301,9 +299,6 @@ public class Bill extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Pin  number must be integer");
                 }
             }
-//            } catch (Exception ex) {
-//                JOptionPane.showMessageDialog(this, "Amount number must be integer");
-//            }
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
