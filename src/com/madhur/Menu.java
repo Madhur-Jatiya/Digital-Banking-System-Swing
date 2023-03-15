@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
 
         add_money.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         add_money.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/madhur/add.png"))); // NOI18N
-        add_money.setText("Add Money");
+        add_money.setText("Personal Loan");
         add_money.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 add_moneyActionPerformed(evt);
@@ -120,18 +120,19 @@ public class Menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(balance)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(send)))
-                .addGap(126, 126, 126)
+                        .addGap(51, 51, 51)
+                        .addComponent(send))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(balance)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(add_money)
+                    .addComponent(add_money, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(history)
-                        .addGap(33, 33, 33)))
+                        .addGap(62, 62, 62)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(93, 93, 93)
@@ -165,11 +166,10 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(bill)
                             .addComponent(send))
                         .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(balance)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(account)
-                                .addComponent(history)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(account)
+                            .addComponent(history)
+                            .addComponent(balance))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
