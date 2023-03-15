@@ -8,14 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import com.toedter.calendar.JCalendar;
-import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -444,63 +439,68 @@ public class Signup extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:        
-        if (password.getText().equals(confrimpassword.getText())) {
-            System.out.println("password success");
-            try {
-                String q = "insert into user(username,password,first_name,last_name,email,mobile,dob,address,adharcard_number,account_balance,gender,pin,account_number,ifsc_code) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                preparedStatement = connection.prepareStatement(q);
-                preparedStatement.setString(1, enterUsername.getText());
-                preparedStatement.setString(2, password.getText());
-                preparedStatement.setString(3, firstname.getText());
-                preparedStatement.setString(4, lastname.getText());
-                preparedStatement.setString(5, email.getText());
-                preparedStatement.setString(6, mobile.getText());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                String date = dateFormat.format(dob.getDate());
-                preparedStatement.setString(7, date);
-                preparedStatement.setString(8, address.getText());
-                preparedStatement.setString(9, adharcard.getText());
-                preparedStatement.setString(10, openingbalance.getText());
+        if (!enterUsername.getText().isEmpty() && !password.getText().isEmpty() && !firstname.getText().isEmpty() && !pin.getText().isEmpty() && !lastname.getText().isEmpty() && !email.getText().isEmpty() && !mobile.getText().isEmpty() && !address.getText().isEmpty() && !adharcard.getText().isEmpty() && !confrimpassword.getText().isEmpty() && !openingbalance.getText().isEmpty()) {
+            if (password.getText().equals(confrimpassword.getText())) {
+                String date = null;
+                try {
+                    date = dateFormat.format(dob.getDate());
 
-                long min = 32000000000L;
-                long max = 33999999999L;
-                long i = (long) (Math.random() * (max - min + 1) + min);
-                String s = String.valueOf(i);
-                preparedStatement.setString(13, s);
+                    try {
+                        String q = "insert into user(username,password,first_name,last_name,email,mobile,dob,address,adharcard_number,account_balance,gender,pin,account_number,ifsc_code) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        preparedStatement = connection.prepareStatement(q);
+                        preparedStatement.setString(1, enterUsername.getText());
+                        preparedStatement.setString(2, password.getText());
+                        preparedStatement.setString(3, firstname.getText());
+                        preparedStatement.setString(4, lastname.getText());
+                        preparedStatement.setString(5, email.getText());
+                        preparedStatement.setString(6, mobile.getText());
 
-                int min1 = 1000000;
-                int max1 = 9999999;
-                int l = (int) (Math.random() * (max1 - min1 + 1) + min1);
-                String s1 = String.valueOf(l);
-                String s2 = "MBIN";
-                s2 = s2.concat(s1);
-                preparedStatement.setString(14, s2);
+                        preparedStatement.setString(7, date);
 
-                if (male.isSelected()) {
-                    preparedStatement.setString(11, male.getText());
-                } else if (female.isSelected()) {
-                    preparedStatement.setString(11, female.getText());
-                } else {
-                    preparedStatement.setString(11, other.getText());
+                        preparedStatement.setString(8, address.getText());
+                        preparedStatement.setString(9, adharcard.getText());
+                        preparedStatement.setString(10, openingbalance.getText());
+
+                        long min = 32000000000L;
+                        long max = 33999999999L;
+                        long i = (long) (Math.random() * (max - min + 1) + min);
+                        String s = String.valueOf(i);
+                        preparedStatement.setString(13, s);
+
+                        String s1 = "MPIN4528364";
+                        preparedStatement.setString(14, s1);
+
+                        if (male.isSelected()) {
+                            preparedStatement.setString(11, male.getText());
+                        } else if (female.isSelected()) {
+                            preparedStatement.setString(11, female.getText());
+                        } else {
+                            preparedStatement.setString(11, other.getText());
+                        }
+
+                        preparedStatement.setString(12, pin.getText());
+                        preparedStatement.executeUpdate();
+
+                    } catch (SQLException ex) {
+                        System.out.println(ex);
+                    }
+                    try {
+                        Login login = new Login();
+                        login.show();
+                        dispose();
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        System.out.println(ex);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Date must not be empty");
                 }
-
-                preparedStatement.setString(12, pin.getText());
-                preparedStatement.executeUpdate();
-
-            } catch (SQLException ex) {
-                System.out.println(ex);
+            } else {
+                JOptionPane.showMessageDialog(this, "confrim pswd not matched with password");
             }
-            try {
-                Login login = new Login();
-                login.show();
-                dispose();
-            } catch (ClassNotFoundException | SQLException ex) {
-                System.out.println(ex);
-            }
-
         } else {
-            JOptionPane.showMessageDialog(this, "confrim pswd not matched with password");
+            JOptionPane.showMessageDialog(this, "required fields must not be empty");
         }
     }//GEN-LAST:event_submitActionPerformed
 
@@ -558,6 +558,7 @@ public class Signup extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new Signup().setVisible(true);
