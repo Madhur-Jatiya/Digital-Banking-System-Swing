@@ -4,6 +4,7 @@
  */
 package com.madhur;
 
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -247,6 +248,9 @@ public class Signup extends javax.swing.JFrame {
         jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         dob.setDateFormatString("dd-MM-yyyy");
+        dob.setMaximumSize(new java.awt.Dimension(50, 50));
+        dob.setPreferredSize(new java.awt.Dimension(5, 33));
+        dob.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -361,14 +365,17 @@ public class Signup extends javax.swing.JFrame {
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gender)
-                        .addComponent(male)
-                        .addComponent(female)
-                        .addComponent(other)
-                        .addComponent(xyz))
-                    .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(gender)
+                            .addComponent(male)
+                            .addComponent(female)
+                            .addComponent(other)
+                            .addComponent(xyz))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username8)
                     .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -455,52 +462,87 @@ public class Signup extends javax.swing.JFrame {
                         preparedStatement.setString(3, firstname.getText());
                         preparedStatement.setString(4, lastname.getText());
                         preparedStatement.setString(5, email.getText());
-                        preparedStatement.setString(6, mobile.getText());
+                        try {
+                            Long.parseLong(mobile.getText());
 
-                        preparedStatement.setString(7, date);
+                            if (mobile.getText().length() == 10) {
+                                preparedStatement.setString(6, mobile.getText());
+                                
+                                preparedStatement.setString(7, date);
+                                preparedStatement.setString(8, address.getText());
+                                try {
+                                    Long.parseLong(adharcard.getText());
+                                    if (adharcard.getText().length() == 12) {
+                                        preparedStatement.setString(9, adharcard.getText());
+                                        try {
+                                            Double.parseDouble(openingbalance.getText());
+                                            if (Integer.parseInt(openingbalance.getText()) >= 1000) {
+                                                preparedStatement.setString(10, openingbalance.getText());
 
-                        preparedStatement.setString(8, address.getText());
-                        preparedStatement.setString(9, adharcard.getText());
-                        preparedStatement.setString(10, openingbalance.getText());
+                                                long min = 32000000000L;
+                                                long max = 33999999999L;
+                                                long i = (long) (Math.random() * (max - min + 1) + min);
+                                                String s = String.valueOf(i);
+                                                preparedStatement.setString(13, s);
 
-                        long min = 32000000000L;
-                        long max = 33999999999L;
-                        long i = (long) (Math.random() * (max - min + 1) + min);
-                        String s = String.valueOf(i);
-                        preparedStatement.setString(13, s);
+                                                String s1 = "MPIN4528364";
+                                                preparedStatement.setString(14, s1);
 
-                        String s1 = "MPIN4528364";
-                        preparedStatement.setString(14, s1);
+                                                if (male.isSelected()) {
+                                                    preparedStatement.setString(11, male.getText());
+                                                } else if (female.isSelected()) {
+                                                    preparedStatement.setString(11, female.getText());
+                                                } else {
+                                                    preparedStatement.setString(11, other.getText());
+                                                }
+                                                try {
+                                                    Integer.parseInt(pin.getText());
+                                                    if (pin.getText().length() == 4) {
+                                                        preparedStatement.setString(12, pin.getText());
+                                                        preparedStatement.executeUpdate();
 
-                        if (male.isSelected()) {
-                            preparedStatement.setString(11, male.getText());
-                        } else if (female.isSelected()) {
-                            preparedStatement.setString(11, female.getText());
-                        } else {
-                            preparedStatement.setString(11, other.getText());
+                                                        try {
+                                                            Login login = new Login();
+                                                            login.show();
+                                                            dispose();
+                                                        } catch (ClassNotFoundException | SQLException ex) {
+                                                            System.out.println(ex);
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(this, "Pin contains only 4 digits");
+                                                    }
+                                                } catch (Exception e) {
+                                                    JOptionPane.showMessageDialog(this, "Pin must be a integer");
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(this, "Minimum opening balance is 1000 Rupees");
+                                            }
+                                        } catch (Exception e) {
+                                            JOptionPane.showMessageDialog(this, "Balance must be a numberic value");
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(this, "Adhar number contains only 12 digits");
+                                    }
+                                } catch (Exception e) {
+                                    JOptionPane.showMessageDialog(this, "Adhar number must be integer");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Mobile number contains only 10 digits");
+                            }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(this, "Mobile number must be integer");
                         }
-
-                        preparedStatement.setString(12, pin.getText());
-                        preparedStatement.executeUpdate();
-
                     } catch (SQLException ex) {
                         System.out.println(ex);
                     }
-                    try {
-                        Login login = new Login();
-                        login.show();
-                        dispose();
-                    } catch (ClassNotFoundException | SQLException ex) {
-                        System.out.println(ex);
-                    }
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Date must not be empty");
+                    JOptionPane.showMessageDialog(this, "Date must not be empty or incorrect");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "confrim pswd not matched with password");
+                JOptionPane.showMessageDialog(this, "Confrim pswd not matched with password");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "required fields must not be empty");
+            JOptionPane.showMessageDialog(this, "Required fields must not be empty");
         }
     }//GEN-LAST:event_submitActionPerformed
 

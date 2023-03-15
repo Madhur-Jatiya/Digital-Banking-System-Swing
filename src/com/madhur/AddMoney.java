@@ -58,18 +58,18 @@ public class AddMoney extends javax.swing.JFrame {
 
         lable1 = new javax.swing.JLabel();
         back = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
         home_page2 = new javax.swing.JLabel();
         add_amount = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         add = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         pin = new javax.swing.JPasswordField();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lable1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        lable1.setText("Add Money");
+        lable1.setText("Personal Loan");
 
         back.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         back.setText("Back");
@@ -78,11 +78,6 @@ public class AddMoney extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setAlignmentX(1.0F);
-        jSeparator2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
 
         home_page2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         home_page2.setText("Amount:-");
@@ -109,6 +104,11 @@ public class AddMoney extends javax.swing.JFrame {
 
         pin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setAlignmentX(1.0F);
+        jSeparator3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,22 +132,22 @@ public class AddMoney extends javax.swing.JFrame {
                         .addComponent(home_page2)
                         .addGap(18, 18, 18)
                         .addComponent(add_amount, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lable1))
-                .addGap(131, 131, 131))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jSeparator3)
+                    .addComponent(lable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(99, 99, 99))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(34, 34, 34)
                 .addComponent(lable1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(home_page2)
                     .addComponent(add_amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,7 +157,7 @@ public class AddMoney extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(pin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(add))
@@ -168,10 +168,10 @@ public class AddMoney extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-            // TODO add your handling code here:
-            Menu menu = new Menu();
-            menu.show();
-            dispose();
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.show();
+        dispose();
     }//GEN-LAST:event_backActionPerformed
 
     private void add_amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_amountActionPerformed
@@ -188,6 +188,8 @@ public class AddMoney extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Incorrect username");
         }
+
+        JOptionPane.showMessageDialog(this, "Personal Loan pass successfully");
     }
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -303,7 +305,7 @@ public class AddMoney extends javax.swing.JFrame {
     private javax.swing.JLabel home_page2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lable1;
     private javax.swing.JPasswordField pin;
     // End of variables declaration//GEN-END:variables

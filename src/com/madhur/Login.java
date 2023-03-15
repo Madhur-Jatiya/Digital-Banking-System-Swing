@@ -192,10 +192,8 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Wrong Username or Password");
                 }
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException | IOException ex) {
+                System.out.println(ex);
             }
 
         } else {
