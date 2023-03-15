@@ -181,44 +181,66 @@ public class Loan extends javax.swing.JFrame {
     public void pinVerification() throws SQLException {
         preparedStatement = connection.prepareStatement("select pin from user where username = ?");
         preparedStatement.setString(1, s);
-        ResultSet rs = preparedStatement.executeQuery();
+//        try {
+//            Integer.parseInt(pin.getText());
+//            if (pin.getText().length() == 4) {
+                ResultSet rs = preparedStatement.executeQuery();
 
-        if (rs.next()) {
-            pinVerify = rs.getString("pin");
-        } else {
-            JOptionPane.showMessageDialog(this, "Incorrect username");
-        }
-
-        JOptionPane.showMessageDialog(this, "Loan Passed successfully");
+                if (rs.next()) {
+                    pinVerify = rs.getString("pin");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Incorrect username");
+                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Pin contains only 4 digits");
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Pin must be a integer");
+//        }
     }
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try {
             // TODO add your handling code here:
             pinVerification();
-            if (pinVerify.equals(pin.getText())) {
-                preparedStatement = connection.prepareStatement("select account_balance from user where username = ?");
-                preparedStatement.setString(1, s);
-                ResultSet rs = preparedStatement.executeQuery();
-                if (rs.next()) {
-                    double balance = rs.getDouble("account_balance");
-                    String amt = add_amount.getText();
-                    double x = Double.parseDouble(amt);
-                    balance = balance + x;
-                    preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
-                    preparedStatement.setDouble(1, balance);
-                    preparedStatement.setString(2, s);
-                    preparedStatement.executeUpdate();
-                    Menu menu = new Menu();
-                    menu.show();
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Incorrect usernamme");
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Incorrect pin");
-            }
+            try {
+                Integer.parseInt(pin.getText());
+                if (pin.getText().length() == 4) {
+                    if (pinVerify.equals(pin.getText())) {
+                        preparedStatement = connection.prepareStatement("select account_balance from user where username = ?");
+                        preparedStatement.setString(1, s);
+                        ResultSet rs = preparedStatement.executeQuery();
+                        if (rs.next()) {
+                            try {
+                                double balance = rs.getDouble("account_balance");
 
+                                Double.parseDouble(add_amount.getText());
+                                String amt = add_amount.getText();
+                                double x = Double.parseDouble(amt);
+                                balance = balance + x;
+                                preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
+                                preparedStatement.setDouble(1, balance);
+                                preparedStatement.setString(2, s);
+                                preparedStatement.executeUpdate();
+                                JOptionPane.showMessageDialog(this, "Loan Passed successfully");
+                                Menu menu = new Menu();
+                                menu.show();
+                                dispose();
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, "Amount must be a numberic value");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Incorrect usernamme");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Incorrect pin");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Pin contains only 4 digits");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Pin must be a integer");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Loan.class.getName()).log(Level.SEVERE, null, ex);
         }

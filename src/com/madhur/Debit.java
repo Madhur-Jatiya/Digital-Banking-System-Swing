@@ -254,7 +254,7 @@ public class Debit extends javax.swing.JFrame {
             balanceCheck();
             pinVerification();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex);
         }
         if (pinVerify.equals(pin.getText())) {
             if (balance - x >= 0) {
@@ -267,13 +267,12 @@ public class Debit extends javax.swing.JFrame {
                     preparedStatement.setInt(3, id);
 
                     preparedStatement.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Money sended to " + reciever_username.getText() + " Successfully");
                     Menu menu = new Menu();
                     menu.show();
                     dispose();
-                } catch (ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
+                } catch (ClassNotFoundException | SQLException ex) {
+                    System.out.println(ex);
                 }
             }
         } else {

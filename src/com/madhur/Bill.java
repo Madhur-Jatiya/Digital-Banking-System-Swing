@@ -225,7 +225,7 @@ public class Bill extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex);
         }
     }
 
@@ -236,17 +236,22 @@ public class Bill extends javax.swing.JFrame {
 
         if (rs.next()) {
             balance = rs.getDouble("account_balance");
-            String amt = bill_amount.getText();
-            x = Double.parseDouble(amt);
-            if (balance - x >= 0) {
-                balance = balance - x;
-                preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
-                preparedStatement.setDouble(1, balance);
-                preparedStatement.setString(2, s);
-                preparedStatement.executeUpdate();
-            } else {
-                JOptionPane.showMessageDialog(this, "insufficient balance");
+            try {
+                String amt = bill_amount.getText();
+                x = Double.parseDouble(amt);
+                if (balance - x >= 0) {
+                    balance = balance - x;
+                    preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
+                    preparedStatement.setDouble(1, balance);
+                    preparedStatement.setString(2, s);
+                    preparedStatement.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(this, "insufficient balance");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Amount number must be integer");
             }
+
         }
     }
 
@@ -267,26 +272,40 @@ public class Bill extends javax.swing.JFrame {
             findUserId();
             pinVerification();
             balanceCheck();
-            if (pinVerify.equals(pin.getText())) {
-                if (balance - x >= 0) {
-                    String s = (String.valueOf(dropdown.getSelectedItem()));
-                    preparedStatement = connection.prepareStatement("insert into transaction(reciever_name,amount,userid,type) values(?,?,?,?)");
-                    preparedStatement.setString(1, s);
-                    preparedStatement.setString(2, bill_amount.getText());
-                    preparedStatement.setInt(3, id);
-                    preparedStatement.setString(4, "bill");
-                    preparedStatement.executeUpdate();
-                    Menu menu = new Menu();
-                    menu.show();
-                    dispose();
+
+            String s = (String.valueOf(dropdown.getSelectedItem()));
+            preparedStatement = connection.prepareStatement("insert into transaction(reciever_name,amount,userid,type) values(?,?,?,?)");
+            preparedStatement.setString(1, s);
+//            try {
+//                Integer.parseInt(bill_amount.getText());
+            if (balance - x >= 0) {
+                preparedStatement.setString(2, bill_amount.getText());
+                preparedStatement.setInt(3, id);
+                try {
+                    Integer.parseInt(pin.getText());
+                    if (pin.getText().length() == 4) {
+                        if (pinVerify.equals(pin.getText())) {
+                            preparedStatement.setString(4, "bill");
+                            preparedStatement.executeUpdate();
+                            JOptionPane.showMessageDialog(this, "Bill Payment Successfully");
+                            Menu menu = new Menu();
+                            menu.show();
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Incorrect pin");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Pin contains only 4 digits");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "Pin  number must be integer");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Incorrect pin");
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Bill.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(this, "Amount number must be integer");
+//            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
         }
     }//GEN-LAST:event_confrimActionPerformed
 
