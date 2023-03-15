@@ -235,16 +235,21 @@ public class Debit extends javax.swing.JFrame {
 
         if (rs.next()) {
             balance = rs.getDouble("account_balance");
-            String amt = amount.getText();
-            x = Double.parseDouble(amt);
-            if (balance - x >= 0) {
-                balance = balance - x;
-                preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
-                preparedStatement.setDouble(1, balance);
-                preparedStatement.setString(2, s);
-                preparedStatement.executeUpdate();
-            } else {
-                JOptionPane.showMessageDialog(this, "insufficient balance");
+            try {
+                Double.parseDouble(amount.getText());
+                String amt = amount.getText();
+                x = Double.parseDouble(amt);
+                if (balance - x >= 0) {
+                    balance = balance - x;
+                    preparedStatement = connection.prepareStatement("update user set account_balance = ? where username = ?");
+                    preparedStatement.setDouble(1, balance);
+                    preparedStatement.setString(2, s);
+                    preparedStatement.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(this, "insufficient balance");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Amount must be a numberic value");
             }
         }
     }
@@ -256,27 +261,41 @@ public class Debit extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        if (pinVerify.equals(pin.getText())) {
-            if (balance - x >= 0) {
-                try {
-                    findUserId();
-                    String q = "insert into transaction(reciever_name,amount,userid) values(?,?,?)";
-                    preparedStatement = connection.prepareStatement(q);
-                    preparedStatement.setString(1, reciever_username.getText());
-                    preparedStatement.setString(2, amount.getText());
-                    preparedStatement.setInt(3, id);
+        try {
+            Integer.parseInt(pin.getText());
+            if (pin.getText().length() == 4) {
+                if (pinVerify.equals(pin.getText())) {
+                    if (balance - x >= 0) {
+                        try {
+                            findUserId();
+                            String q = "insert into transaction(reciever_name,amount,userid) values(?,?,?)";
+                            preparedStatement = connection.prepareStatement(q);
+                            preparedStatement.setString(1, reciever_username.getText());
 
-                    preparedStatement.executeUpdate();
-                    JOptionPane.showMessageDialog(this, "Money sended to " + reciever_username.getText() + " Successfully");
-                    Menu menu = new Menu();
-                    menu.show();
-                    dispose();
-                } catch (ClassNotFoundException | SQLException ex) {
-                    System.out.println(ex);
+                            if (Integer.parseInt(amount.getText()) <= 30000) {
+                                preparedStatement.setString(2, amount.getText());
+                                preparedStatement.setInt(3, id);
+                                preparedStatement.executeUpdate();
+                                JOptionPane.showMessageDialog(this, "Money sended to " + reciever_username.getText() + " Successfully");
+                                Menu menu = new Menu();
+                                menu.show();
+                                dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Maximun transfer limit is 30000");
+                            }
+
+                        } catch (ClassNotFoundException | SQLException ex) {
+                            System.out.println(ex);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Incorrect pin");
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Pin contains only 4 digits");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Incorrect pin");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Pin must be a integer");
         }
     }//GEN-LAST:event_sendActionPerformed
 
@@ -298,16 +317,24 @@ public class Debit extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Debit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Debit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Debit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Debit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Debit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Debit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Debit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Debit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -316,12 +343,18 @@ public class Debit extends javax.swing.JFrame {
             public void run() {
                 try {
                     new Debit().setVisible(true);
+
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Debit.class
+                            .getName()).log(Level.SEVERE, null, ex);
+
                 } catch (SQLException ex) {
-                    Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Debit.class
+                            .getName()).log(Level.SEVERE, null, ex);
+
                 } catch (IOException ex) {
-                    Logger.getLogger(Debit.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Debit.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
