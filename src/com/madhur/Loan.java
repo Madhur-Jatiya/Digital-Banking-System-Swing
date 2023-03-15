@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author 91940
  */
-public class AddMoney extends javax.swing.JFrame {
+public class Loan extends javax.swing.JFrame {
 
     /**
      * Creates new form loan
@@ -33,7 +33,7 @@ public class AddMoney extends javax.swing.JFrame {
     private String pinVerify;
     private String s;
 
-    public AddMoney() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
+    public Loan() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         initComponents();
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bms", "root", "My$ql123");
@@ -189,7 +189,7 @@ public class AddMoney extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Incorrect username");
         }
 
-        JOptionPane.showMessageDialog(this, "Personal Loan pass successfully");
+        JOptionPane.showMessageDialog(this, "Loan Passed successfully");
     }
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -220,7 +220,7 @@ public class AddMoney extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Loan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addActionPerformed
 
@@ -241,14 +241,46 @@ public class AddMoney extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddMoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddMoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddMoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddMoney.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -286,13 +318,13 @@ public class AddMoney extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new AddMoney().setVisible(true);
+                    new Loan().setVisible(true);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Loan.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Loan.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(AddMoney.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Loan.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

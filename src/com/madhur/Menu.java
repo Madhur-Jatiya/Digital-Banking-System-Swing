@@ -62,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         add_money.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        add_money.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/madhur/add.png"))); // NOI18N
+        add_money.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/madhur/loan1.png"))); // NOI18N
         add_money.setText("Personal Loan");
         add_money.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +179,7 @@ public class Menu extends javax.swing.JFrame {
     private void add_moneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_moneyActionPerformed
         try {
             // TODO add your handling code here:
-            AddMoney addMoney = new AddMoney();
+            Loan addMoney = new Loan();
             addMoney.show();
             dispose();
         } catch (ClassNotFoundException ex) {
